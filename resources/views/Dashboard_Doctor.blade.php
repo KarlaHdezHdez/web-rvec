@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>RVEC</title>
-    
-<link rel="stylesheet" href="{{ asset('/css/estilos.css') }}"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <title>Document</title>
 </head>
 <body>
-<!-- CABECERA -->
+<header>
+    <!-- CABECERA -->
 <div class="header">
     <img src="img/logo.png" alt="" width="200" height="70">
   
@@ -26,6 +22,5 @@
   <a href="#"><i class="fa fa-sign-in"></i>Iniciar Sesion</a>
   </div>
 </div>
-
 </body>
 </html>
