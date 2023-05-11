@@ -17,4 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('Dashboard_Administrador', function () {
+    return view('Dashboard_Administrador');
+});
+
+Route::get('Dashboard_Logueado', function () {
+    return view('Dashboard_Logueado');
+});
+
+Route::get('Dashboard_Doctor', function () {
+    return view('Dashboard_Doctor');
+});
 
