@@ -99,7 +99,7 @@
                 </div>
                 <div class="footer-content-container">
                     <span class="menu-title"><i class="fa fa-gavel"></i> legal</span>
-                    <a href="avisoprivacidad" class="menu-item-footer"><i class="fa fa-file-text"></i> Aviso de Privacidad</a>
+                    <a href="Aviso_Privacidad" class="menu-item-footer"><i class="fa fa-file-text"></i> Aviso de Privacidad</a>
                     <a href="Cockies_Aviso" class="menu-item-footer"><i class="fa fa-file-text-o"></i> Cookies</a>
                    
                 </div>
@@ -130,7 +130,7 @@
       <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios.</p>
       <div class="buttons">
         <button class="item">De acuerdo</button>
-        <a href="avisocockie" class="item">Leer  mas...</a>
+        <a href="Cockies_Aviso" class="item">Leer  mas...</a>
       </div>
     </div>
   </div>

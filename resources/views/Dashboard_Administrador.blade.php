@@ -101,10 +101,45 @@
     </a>
 </div>
 
+ <!-- PIE DE PAGINA-->
+ <footer>
+        <div class="footer-container">
+            <div class="footer-content-container">
+                <h3 class="website-logo">RVEC</h3>
+                <span class="footer-info">Repositorio Virtual de las </span>
+                <span class="footer-info">Enfermedades Cronicas</span>
+            </div>
+            <div class="footer-menus">
+                <div class="footer-content-container">
+                    <span class="menu-title"><i class="fa fa-bars"></i> Menu</span>
+                    <a href="index.php" class="menu-item-footer"><i class="fa fa-fw fa-home"></i> Home</a>
+                    <a href="informacion" class="menu-item-footer"><i class="fa fa-newspaper-o"></i> Informacion</a>
+                    <a href="" class="menu-item-footer"><i class="fa fa-camera-retro"></i> Testimonios</a>
+                </div>
+                <div class="footer-content-container">
+                    <span class="menu-title"><i class="fa fa-gavel"></i> legal</span>
+                    <a href="avisoprivacidad" class="menu-item-footer"><i class="fa fa-file-text"></i> Aviso de Privacidad</a>
+                    <a href="Cockies_Aviso" class="menu-item-footer"><i class="fa fa-file-text-o"></i> Cookies</a>
+                   
+                </div>
+            </div>
+            
+            
+            <div class="footer-content-container">
+                <span class="menu-title">Siguenos</span>
+                <div class="social-container">
+                    <a href="" class="social-link"><i class="fa fa-facebook-official"></i></a>
+                    <a href="" class="social-link"><i class="fa fa-instagram"></i></a>
+                    <a href="" class="social-link"><i class="fa fa-twitter-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-container">
+            <span class="copyright">Copyright 2023, RVEC.com. Todos los derechos reservados.</span>
+        </div>
+    </footer>
 
 <script src="{{ asset('/js/carrusel.js') }}"></script>
 
-
-<script src="{{ asset('/js/menu.js') }}"></script>
 </body>
 </html>

@@ -32,7 +32,11 @@
   </div>
 </div>
 
-<br><br><br><br>
+<ul class="breadcrumb">
+  <li><a href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
+  <li><i class="fa fa-file-text-o"></i> Aviso de Cookies</li>
+</ul>
+
   <div class="texto">
   <h1>Aviso de Cookies</h1>
 		<h3>¿Qué son las cookies?</h3>
