@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,3 +30,6 @@ Route::get('Dashboard_Doctor', function () {
     return view('Dashboard_Doctor');
 });
 
+Route::get('Cockies_Aviso', function () {
+    return view('Cockies_Aviso');
+});
