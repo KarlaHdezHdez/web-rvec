@@ -32,6 +32,8 @@
   </div>
 </div>
 
+
+
  <!--CARRUSEL-->
 <div id="myCarouselCustom" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -80,7 +82,48 @@
     </a>
 </div>
 
-
+<section class="product-category section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title text-center">
+					<h2>Enfermedades Cronicas</h2>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box">
+					<a href="#!">
+						<img src="https://www.farmaciagt.com/blog/wp-content/uploads/2021/10/istockphoto-953795236-612x612-1.jpg" alt="" />
+						<div class="content">
+							<h3>Diabetes</h3>
+							<p>No tienes que vivir para la diabetes, sino vivir con la diabetes</p>
+						</div>
+					</a>	
+				</div>
+				<div class="category-box">
+					<a href="#!">
+						<img src="https://clinicalasmonjas.com/wp-content/uploads/2020/12/LA-EPILEPSIA-EN-EL-DESARROLLO-DEL-NINO.jpg" alt="" />
+						<div class="content">
+							<h3>Epilepsia</h3>
+							<p>Se caracteriza por convulsiones recurrentes no provocadas.</p>
+						</div>
+					</a>	
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box category-box-2">
+					<a href="#!">
+						<img src="https://1.bp.blogspot.com/-4oZNwT7n03Q/X9oBf4R6YyI/AAAAAAAAA7U/9WyRI9c78B4NjTEHFiBRELgVBu875FHWwCLcBGAsYHQ/s2804/infograma%2BFASES%2BALZHEIMER%25282%2529.jpg" alt="" />
+						<div class="content">
+							<h3>Alzheimer</h3>
+							<p>Del Alzheimer he aprendido a dejar la razón de lado y comunicarme con la emoción</p>
+						</div>
+					</a>	
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
    <!-- PIE DE PAGINA-->
 <footer>
