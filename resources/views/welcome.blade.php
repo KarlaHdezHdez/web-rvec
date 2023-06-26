@@ -25,7 +25,7 @@
   <a class="active" href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
   <a href="#"><i class="fa fa-hand-peace-o"></i> Quienes somos</a>
   <a href="#"><i class="fa fa-shopping-cart"></i> Tienda</a>
-  <a href="#"><i class="fa fa-newspaper-o"></i>Informacion</a>
+  <a href="Informacion"><i class="fa fa-newspaper-o"></i>Informacion</a>
   <a href="Contactanos"><i class="fa fa-pencil-square-o"></i>Contactanos</a>
   <a href="#"><i class="fa fa-user-plus"></i>Registrate</a>
   <a href="#"><i class="fa fa-sign-in"></i>Iniciar Sesion</a>

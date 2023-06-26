@@ -39,3 +39,7 @@ Route::get('Aviso_Privacidad', function () {
 Route::get('Contactanos', function () {
     return view('Contactanos');
 });
+
+Route::get('Informacion', function () {
+    return view('Informacion');
+});
