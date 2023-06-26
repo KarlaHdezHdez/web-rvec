@@ -35,3 +35,7 @@ Route::get('Cockies_Aviso', function () {
 Route::get('Aviso_Privacidad', function () {
     return view('Aviso_Privacidad');
 });
+
+Route::get('Contactanos', function () {
+    return view('Contactanos');
+});
