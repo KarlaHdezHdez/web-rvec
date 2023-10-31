@@ -9,3 +9,8 @@ $("#prevBtn").click(function(){
 $("#nextBtn").click(function(){
     $("#myCarouselCustom").carousel("next");
 });
+
+
+$(document).ready(function() {
+    $('#myCarouselCustom').carousel();
+});

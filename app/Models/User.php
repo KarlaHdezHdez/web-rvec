@@ -2,43 +2,51 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'tblusuarios';
+    protected $primaryKey = 'idusuario'; // Especifica la clave primaria personalizada
+
+    // Definir las columnas que se pueden llenar masivamente
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'tipo_usuario',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public $timestamps = true;
+    protected $dateFormat = 'Y-m-d H:i:s';
+
 
     /**
-     * The attributes that should be cast.
+     * Set the user's password with hash.
      *
-     * @var array<string, string>
+     * @param  string  $password
+     * @return void
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function paciente()
+    {
+        return $this->hasOne(Paciente::class, 'idusuario');
+    }
+
+    public function especialista()
+    {
+        return $this->hasOne(Especialistas::class, 'idusuario');
+    }
+
+    
+
+    // Otras propiedades y métodos del modelo...
 }
