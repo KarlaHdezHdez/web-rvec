@@ -4,7 +4,7 @@
 set -o errexit -o pipefail
 
 # Update yum
-sudo update -y
+sudo apt update -y
 
 # Install packages
 sudo apt install -y curl
