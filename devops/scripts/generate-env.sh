@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author Emad Zaamout | support@ahtcloud.com
-
+chmod +x after-install.sh
 # loads your .env file stored inside AWS Systems Manager (Paramater).
 
 # aws paramater store name & region
