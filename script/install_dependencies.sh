@@ -7,7 +7,7 @@ set -o errexit -o pipefail
 sudo apt update 
 
 # Install required packages
-sudo apt install curl git php7.1 php7.1-cli php7.1-fpm php7.1-mysql php7.1-xml php7.1-curl php7.1-opcache php7.1-pdo php7.1-gd php7.1-apcu php7.1-mbstring php7.1-imap php7.1-redis php7.1-mcrypt php7.1-mysqlnd apache2
+sudo apt install curl git php7.4 php7.4-cli php7.4-fpm php7.4-mysql php7.4-xml php7.4-curl php7.4-opcache php7.4-pdo php7.4-gd php7.4-apcu php7.4-mbstring php7.4-imap php7.4-redis php7.4-mcrypt php7.4-mysqlnd apache2
 
 # Allow URL rewrites in Apache
 sudo sed -i 's#AllowOverride None#AllowOverride All#' /etc/apache2/apache2.conf
