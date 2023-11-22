@@ -3,55 +3,44 @@
 # Exit on error
 set -o errexit -o pipefail
 
-# Update yum
+# Update package manager (apt for Debian/Ubuntu)
 sudo apt update -y
 
-# Install packages
-sudo apt install -y curl
-sudo apt install -y git
+# Install required packages
+sudo apt install -y curl git php7.1 php7.1-cli php7.1-fpm php7.1-mysql php7.1-xml php7.1-curl php7.1-opcache php7.1-pdo php7.1-gd php7.1-apcu php7.1-mbstring php7.1-imap php7.1-redis php7.1-mcrypt php7.1-mysqlnd apache2
 
-# Remove current apache & php
-sudo -y remove httpd* php*
+# Allow URL rewrites in Apache
+sudo sed -i 's#AllowOverride None#AllowOverride All#' /etc/apache2/apache2.conf
 
-# Install PHP 7.1
-sudo apt install -y php71 php71-cli php71-fpm php71-mysql php71-xml php71-curl php71-opcache php71-pdo php71-gd php71-pecl-apcu php71-mbstring php71-imap php71-pecl-redis php71-mcrypt php71-mysqlnd mod24_ssl
+# Change Apache document root
+sudo mkdir -p /var/www/html/public
+sudo sed -i 's#DocumentRoot "/var/www/html"#DocumentRoot "/var/www/html/public"#' /etc/apache2/sites-available/000-default.conf
 
-# Install Apache 2.4
-sudo -y install httpd24
-
-# Allow URL rewrites
-sed -i 's#AllowOverride None#AllowOverride All#' /etc/httpd/conf/httpd.conf
-
-# Change apache document root
-mkdir -p /var/www/html/public
-sed -i 's#DocumentRoot "/var/www/html"#DocumentRoot "/var/www/html/public"#' /etc/httpd/conf/httpd.conf
-
-# Change apache directory index
-sed -e 's/DirectoryIndex.*/DirectoryIndex index.html index.php/' -i /etc/httpd/conf/httpd.conf
+# Change Apache directory index
+sudo sed -i 's/DirectoryIndex.*/DirectoryIndex index.html index.php/' /etc/apache2/apache2.conf
 
 # Get Composer, and install to /usr/local/bin
 if [ ! -f "/usr/local/bin/composer" ]; then
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    php composer-setup.php --install-dir=/usr/bin --filename=composer
-    php -r "unlink('composer-setup.php');"
+    sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    rm composer-setup.php
 else
-    /usr/local/bin/composer self-update --stable --no-ansi --no-interaction
+    composer self-update --stable --no-ansi --no-interaction
 fi
 
-# Restart apache
-service httpd start
-
-# Setup apache to start on boot
-chkconfig httpd on
+# Restart Apache
+sudo service apache2 restart
 
 # Ensure aws-cli is installed and configured
 if [ ! -f "/usr/bin/aws" ]; then
-    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-    unzip awscli-bundle.zip
-    ./awscli-bundle/install -b /usr/bin/aws
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+    rm awscliv2.zip
+    rm -rf aws
 fi
 
 # Ensure AWS Variables are available
-if [[ -z "$AWS_ACCOUNT_ID" || -z "$AWS_DEFAULT_REGION " ]]; then
-    echo "AWS Variables Not Set.  Either AWS_ACCOUNT_ID or AWS_DEFAULT_REGION"
+if [[ -z "$AWS_ACCOUNT_ID" || -z "$AWS_DEFAULT_REGION" ]]; then
+    echo "AWS Variables Not Set. Either AWS_ACCOUNT_ID or AWS_DEFAULT_REGION"
 fi
