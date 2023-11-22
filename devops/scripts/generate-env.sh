@@ -8,11 +8,11 @@ PARAMATER="web_rvec-ENV"
 REGION="ca-central-1"
 
 # Get parameters and put it into .env file inside application root
+
 aws ssm get-parameter \
   --with-decryption \
-  --name $PARAMATER \
+  --name $PARAMETER \
   --region $REGION \
-  --with-decryption \
   --query Parameter.Value \
   --output text > $WEB_DIR/.env
 
