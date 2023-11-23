@@ -1,53 +1,53 @@
 #!/bin/bash
+# Author Emad Zaamout | support@ahtcloud.com
 
-# Salir en caso de error
-set -o errexit -o pipefail
+# Not used anywhere. Just helps install all what you need on your production server to run a basic laravel project. Run manually.
 
-# Actualizar el gestor de paquetes (apt para Debian/Ubuntu)
 sudo apt update
+sudo apt dist-upgrade
+sudo apt install apache2
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt install php8.0
+sudo apt install php-curl php-cli php-mbstring git unzip php8.0-mysql php8.0-dom php8.0-xml php8.0-xmlwriter phpunit php-mbstring php-xml
+sudo apt install libapache2-mod-php8.0
+sudo a2enmod rewrite
+sudo /etc/init.d/apache2 restart
 
-# Instalar paquetes necesarios con 'apt-get'
-sudo apt-get -y install fontconfig-config fonts-dejavu-core libapache2-mod-php8.1 libdeflate0 \
-libfontconfig1 libgd3 libjbig0 libjpeg-turbo8 libjpeg8 libonig5 libtiff5 libwebp7 \
-libxpm4 libzip4 php8.1 php8.1-bcmath php8.1-cli php8.1-common php8.1-curl php8.1-fpm \
-php8.1-gd php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-readline php8.1-xml php8.1-zip
+# install composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
 
-# Permitir reescritura de URL en Apache
-sudo sed -i 's#AllowOverride None#AllowOverride All#' /etc/apache2/apache2.conf
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 
-# Cambiar la raíz del documento de Apache
-sudo mkdir -p /var/www/html/public
-sudo sed -i 's#DocumentRoot "/var/www/html"#DocumentRoot "/var/www/html/public"#' /etc/apache2/sites-available/000-default.conf
+# Create apache2 virtual host and store it inside ./etc/apache2/sites-availiable.
+cd $APACHE_DIR/sites-availiable
 
-# Cambiar el índice del directorio de Apache
-sudo sed -i 's/DirectoryIndex.*/DirectoryIndex index.html index.php/' /etc/apache2/apache2.conf
+echo "<VirtualHost *:80>" > $CONFIG_FILE_NAME
+echo "  ServerAdmin $SERVER_ADMIN" >> $CONFIG_FILE_NAME
+echo "  ServerName $SERVER_NAME" >> $CONFIG_FILE_NAME
+echo "  ServerAlias $SERVER_ALIAS" >> $CONFIG_FILE_NAME
+echo "  DocumentRoot $WEBSITE_DIR/public" >> $CONFIG_FILE_NAME
+echo "  ErrorLog ${APACHE_LOG_DIR}/error.log" >> $CONFIG_FILE_NAME
+echo "  CustomLog ${APACHE_LOG_DIR}/access.log combined" >> $CONFIG_FILE_NAME
+echo "  <Directory $WEBSITE_DIR>" >> $CONFIG_FILE_NAME
+echo "    Require all granted" >> $CONFIG_FILE_NAME
+echo "    AllowOverride All" >> $CONFIG_FILE_NAME
+echo "    Options Indexes Multiviews FollowSymLinks" >> $CONFIG_FILE_NAME
+echo "  </Directory>" >> $CONFIG_FILE_NAME
+echo "</VirtualHost>" >> $CONFIG_FILE_NAME
 
-# Obtener Composer e instalar en /usr/local/bin
-if [ ! -f "/usr/local/bin/composer" ]; then
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-    rm composer-setup.php
-else
-    composer self-update --stable --no-ansi --no-interaction
-fi
+# disable default site + enable new site
+sudo a2dissite 000-default.conf
+sudo a2ensite $CONFIG_FILE_NAME
 
-# Reiniciar Apache
-sudo service apache2 restart
+# enable rewrite module
+sudo a2enmod rewrite
 
-# Asegurar que aws-cli esté instalado y configurado
-if ! command -v aws &> /dev/null; then
-    echo "AWS CLI no encontrado. Instalando..."
-    curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    unzip -o awscliv2.zip
-    sudo ./aws/install
-    rm -rf aws awscliv2.zip  # Limpiar archivos temporales
-else
-    echo "AWS CLI ya está instalado. Actualizando..."
-    aws --version  # Verificar la versión actual
-    sudo aws cli update --cli-binary-format exe-linux-x86_64 --cli-version 2.6.5
-fi
-
-# Asegurar que las variables de AWS estén disponibles
-if [[ -z "$AWS_ACCOUNT_ID" || -z "$AWS_DEFAULT_REGION" ]]; then
-    echo "Variables de AWS no configuradas. Se necesita AWS_ACCOUNT_ID o AWS_DEFAULT_REGION"
-fi
+# restart apache
+sudo /etc/init.d/apache2 restart
