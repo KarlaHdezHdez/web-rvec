@@ -21,7 +21,7 @@ sudo chmod g+w -R storage
 sudo -u $WEB_USER composer install --no-dev --no-progress --prefer-dist
 
 # load .env file from AWS Systems Manager
-./devops/scripts/generate-env.sh
+script/generate-env.sh
 
 # generate app key & run migrations
 sudo -u $WEB_USER php artisan key:generate
