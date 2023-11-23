@@ -22,7 +22,7 @@ sudo -u "$WEB_USER" composer install --no-dev --no-progress --prefer-dist || { e
 
 # load .env file from AWS Systems Manager
 # Assuming generate-env.sh is in the scripts directory
-./scripts/generate-env.sh || { echo "generating .env file failed"; exit 1; }
+./script/generate-env.sh || { echo "generating .env file failed"; exit 1; }
 
 
 # generate app key & run migrations
