@@ -7,7 +7,10 @@ set -o errexit -o pipefail
 sudo apt update 
 
 # Install required packages
-sudo apt-get install -y php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
+apt-get -y install fontconfig-config fonts-dejavu-core libapache2-mod-php8.1 libdeflate0 \
+libfontconfig1 libgd3 libjbig0 libjpeg-turbo8 libjpeg8 libonig5 libtiff5 libwebp7 \
+libxpm4 libzip4 php8.1 php8.1-bcmath php8.1-cli php8.1-common php8.1-curl php8.1-fpm \
+php8.1-gd php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-readline php8.1-xml php8.1-zip
 
 # Allow URL rewrites in Apache
 sudo sed -i 's#AllowOverride None#AllowOverride All#' /etc/apache2/apache2.conf
