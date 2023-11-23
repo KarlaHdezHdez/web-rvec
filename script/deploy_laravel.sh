@@ -21,7 +21,9 @@ sudo chmod g+w -R storage
 sudo -u "$WEB_USER" composer install --no-dev --no-progress --prefer-dist || { echo "Composer installation failed"; exit 1; }
 
 # load .env file from AWS Systems Manager
-scripts/generate-env.sh || { echo "Generating .env file failed"; exit 1; }
+# Assuming generate-env.sh is in the scripts directory
+./scripts/generate-env.sh || { echo "generating .env file failed"; exit 1; }
+
 
 # generate app key & run migrations
 sudo -u "$WEB_USER" php artisan key:generate || { echo "Generating app key failed"; exit 1; }
