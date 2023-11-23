@@ -7,7 +7,7 @@ set -o errexit -o pipefail
 sudo apt update 
 
 # Install required packages
-sudo apt-get -y install php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
+sudo apt-get install -y php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
 
 # Allow URL rewrites in Apache
 sudo sed -i 's#AllowOverride None#AllowOverride All#' /etc/apache2/apache2.conf
