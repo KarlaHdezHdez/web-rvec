@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Enter html directory
-cd /var/www/html/
+cd /var/www/web_rvec/
 
 # Create cache and chmod folders
 mkdir -p /var/www/html/bootstrap/cache
