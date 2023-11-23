@@ -35,11 +35,16 @@ fi
 sudo service apache2 restart
 
 # Ensure aws-cli is installed and configured
-if [ ! -f "/usr/bin/aws" ]; then
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+# Verificar si ya existe una instalación de AWS CLI
+if [ -d "/usr/local/aws-cli/v2/current" ]; then
+    echo "Found preexisting AWS CLI installation. Updating..."
+    sudo /usr/local/aws-cli/v2/current/aws/install --update
+else
+    # Si no existe una instalación previa, instalar AWS CLI
+    echo "No existing AWS CLI installation found. Proceeding with installation..."
+    curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     unzip -o awscliv2.zip
     sudo ./aws/install
-    rm awscliv2.zip
     rm -rf aws
 fi
 
