@@ -36,10 +36,11 @@ sudo service apache2 restart
 
 # Ensure aws-cli is installed and configured
    # Instalar o actualizar AWS CLI
+# Verificar si AWS CLI está instalado
 if command -v aws &> /dev/null; then
     echo "AWS CLI is already installed. Updating..."
-    aws --version  # Asegurémonos de que AWS CLI esté en el PATH
-    aws --version | grep -q "2.6.5" || sudo /usr/local/aws-cli/v2/current/aws/install --update
+    aws --version  # Verificar la versión actual
+    sudo aws cli update --cli-binary-format exe-linux-x86_64 --cli-version 2.6.5
 else
     echo "AWS CLI not found. Installing..."
     curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
