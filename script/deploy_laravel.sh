@@ -1,5 +1,6 @@
 #!/bin/bash
-# Author Emad Zaamout | support@ahtcloud.com
+set -e
+# Resto del script...
 
 # Runs inside production server.
 
