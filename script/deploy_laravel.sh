@@ -13,7 +13,7 @@ export WEB_USER="ubuntu"
 cd "$WEB_DIR" || exit 1
 
 # change user owner to ubuntu & fix storage permission issues.
-chown -R ubuntu:ubuntu directorio  # Cambia el propietario y el grupo
+sudo chown -R ubuntu:ubuntu   # Cambia el propietario y el grupo
 sudo chmod -R www-data storage
 sudo chmod -R u+x .
 sudo chmod g+w -R storage
