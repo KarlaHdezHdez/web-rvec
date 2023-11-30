@@ -1,25 +1,15 @@
+# Events:
+# ApplicationStop, BeforeInstall, AfterInstall, ApplicationStart, ValidateService
+# https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_LifecycleEvent.html
 version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/web-rvec/
+    destination: /var/www/aws-codedeploy-bitbucket-laravel
 hooks:
-  BeforeInstall:
-    - location: script/install_dependencies.sh
-      timeout: 300
-      runas: root
   AfterInstall:
-    - location: script/deploy_laravel.sh
-      timeout: 300
-      runas: root
-    - location: script/change_permissions.sh
-      timeout: 300
-      runas: root
-  ApplicationStart:
-    - location: script/start_server.sh
-      timeout: 120
-      runas: root    
-  ApplicationStop:
-    - location: script/stop_server.sh
-      timeout: 120
-      runas: root
+    - location: ./devops/hooks/after-install.sh
+      runas: ubuntu
+
+#BeforeInstall
+#AfterInstall
